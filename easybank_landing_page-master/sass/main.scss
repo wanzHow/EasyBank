@@ -1,0 +1,436 @@
+@import "config";
+@import "resets";
+@import "variables";
+@import "buttons";
+
+// Navbar
+.navbar-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-toggler {
+  display: block;
+  right: 15px;
+  margin: 0 auto;
+  position: absolute;
+  
+  & #hamburger-icon {
+    display: none;
+    
+    &.show {
+      display: block;
+    }
+  }
+  & #close-icon {
+    display: none;
+    &.show {
+      display: block;
+    }
+  }
+}
+
+.navbar-collapse {
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar-nav {
+  align-items: center;
+  margin-right: 15px;
+}
+
+.navbar-nav li {
+  & :hover {
+    text-decoration: 5px underline $limeGreen;
+    color: $darkBlue;
+  }
+  & a {
+    color: $grayishBlue;
+    list-style: none;
+    text-decoration: none;
+    font-size: $fontSize;
+    font-family: $font-stack;
+    font-weight: weight(regular);
+    padding: 20px;
+  }
+}
+
+.request-btn {
+  display: none;
+  @include large {
+    display: block;
+    color: $veryLightGray;
+    @include btn($list);
+    border-radius: 30px;
+  }
+}
+
+//   MODAL
+
+.modal-wrapper {
+  display: none;
+
+  &.show {
+    z-index: 999;
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    top: 8%;
+    left: 50%;
+    display: flex;
+    background-color: #fafafa;
+    transform: translateX(-50%);
+    border-radius: 15px;
+    @include boxShadow(rgba(114, 95, 95, 0.589))
+    
+  }
+  & .modal-menu ul,
+  & .modal-menu {
+    display: flex;
+    flex-direction: column;
+    // padding-left: 0;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    
+
+    & li {
+      list-style: none;
+      text-decoration: none;
+      font-size: $fontSize;
+      font-family: $font-stack;
+      font-weight: weight(regular);
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+}
+
+// HERO IMAGE
+.intro-wrapper {
+  padding: 0;
+  position: relative;
+  height: 100%;
+  display: block;
+
+  & .hero-image {
+    background-image: url(/images/bg-intro-mobile.svg);
+    background-repeat: no-repeat;
+    position: relative;
+    background-position: right center;
+    height: 50vh;
+    width: 100%;
+    background-size: 100%;
+    @include large {
+      background-image: url(/images/bg-intro-desktop.svg);
+      width: 100%;
+      height: 100%;
+      background-size: 100%;
+      background-position: right;
+    }
+    &::after {
+      content: "";
+      background-image: url(/images/image-mockups.png);
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 116%;
+      position: relative;
+      display: block;
+      top: 0;
+      background-size: 100%;
+      background-position-y: -105px;
+     
+
+      @include tablet {
+        height: 100%;
+        background-position-x: 50px;
+        background-position-y: -120px;
+      }
+      @include large {
+        background-size: 77%;
+        margin: 0;
+        height: 160%;
+        background-position-x: 300px;
+        background-position-y: -280px;
+      }
+    }
+  }
+
+  & .intro-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    @include large {
+      padding-left: 105px;
+    }
+    & h2 {
+      @include header($darkBlue, 600, $fontSize * 2);
+      text-align: center;
+      margin-top: 50px;
+      @include large {
+        text-align: left;
+      }
+    }
+    & p {
+      @include text($grayishBlue, 500, $fontSize, justify);
+      padding: 30px;
+      @include large {
+        padding: 0px;
+      }
+    }
+    & .intro-request-btn {
+      display: block;
+      color: $veryLightGray;
+      @include btn($list);
+      border-radius: 30px;
+      margin-bottom: 100px;
+      @include large {
+        align-self: flex-start;
+      }
+    }
+  }
+}
+
+// ANIMATION
+
+.fade-in{
+  opacity: 0;
+  transform: translateX(50%);
+  transition: transform 250ms ease-in, opacity 450ms ease-in;
+  &.appear{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in{
+  transform: translateX(50%);
+  transition: transform 400ms ease-in;
+  &.appear{
+    transform: translateX(0);
+  }
+}
+
+.icon-section {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: $lightGrayishBlue;
+  flex-direction: column;
+  z-index: 999;
+
+  & .choice-section {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    & h3 {
+      @include header($darkBlue, 500, $fontSize * 2);
+      text-align: center;
+      padding: 30px;
+      @include tablet {
+        display: flex;
+        padding: 50px 0px 50px 0px;
+      }
+    }
+    & p {
+      @include text($grayishBlue, 500, $fontSize, center);
+
+      @include tablet {
+        display: flex;
+        @include text($grayishBlue, 500, $fontSize, left);
+        margin: 5px 30px 10px 0px;
+      }
+    }
+  }
+
+  & img {
+    padding: 30px;
+    @include tablet {
+      display: flex;
+      padding: 30px 0px 30px 0px;
+    }
+  }
+  & h3 {
+    @include header($darkBlue, 500, $fontSize * 1.5);
+    margin: 10px;
+    @include tablet {
+      text-align: left;
+    }
+  }
+  & p {
+    @include text($grayishBlue, 400, $fontSize, center);
+    margin-top: 30px;
+    @include tablet {
+      text-align: left;
+    }
+  }
+}
+
+// Article section
+
+.article {
+  @include header($darkBlue, 500, $fontSize * 1.5);
+  margin: 100px 0 50px 0;
+  @include tablet {
+    align-self: flex-start;
+    display: flex;
+    padding-left: 120px;
+  }
+}
+.article-section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: $veryLightGray;
+  width: 100%;
+}
+.card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+
+  & .card-img-top{
+    max-height:200px;
+  }
+
+  & .card-body {
+    padding: 30px;
+
+    & small {
+      font-size: small;
+    }
+
+    & h4 {
+      font-size: $fontSize;
+      font-weight: weight(bold);
+      color: $darkBlue;
+      cursor: pointer;
+      &:hover {
+        color: $limeGreen;
+      }
+    }
+
+    & p {
+      color: $grayishBlue;
+      margin-bottom: 40px;
+    }
+  }
+}
+// FOOTER
+
+.footer-wrapper {
+  @include set-bg-color($darkBlue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & .footer-menu-wrapper-left div,
+  & .footer-menu-wrapper-right div {
+    padding: 5px;
+  }
+
+  & .logo-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    padding: 9px;
+    margin-bottom: 30px
+  }
+
+  .social-icons {
+    @include flexBox(flex, row, center, wrap);
+    margin: 20px;
+
+    & div {
+      padding: 10px;
+    }
+  }
+  & .menu-bottom-button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    & .footer-button {
+      display: inline-block;
+      color: $veryLightGray;
+      @include btn($list);
+      margin-bottom: 40px;
+      margin-top: 40px;
+      border-radius: 30px;
+      align-self: center;
+      @include large{
+        align-self: flex-end;
+        margin: 0px 40px 20px 0;
+      }
+    }
+    & .rights {
+      align-self: center;
+      font-size: $fontSize * 0.7;
+      margin-bottom: 50px;
+      font-weight: weight(light);
+      
+      @include large{
+        margin-top: 30px;
+        margin-right: 40px;
+        align-self: flex-end;
+      }
+    }
+  }
+
+  @include large {
+    padding: 30px;
+
+    & .logo-social {
+      @include flexBox(flex, column, space-between, nowrap);
+      align-items: flex-start;
+      margin-top: 0;
+      margin-left: 60px;
+
+      & .social-icons {
+        margin: 0;
+        cursor: pointer;
+        & div svg:hover {
+          background-color: $limeGreen;
+        }
+      }
+    }
+    & .menu-bottom-list {
+      @include flexBox(flex, row, space-between, nowrap);
+      margin-left: 40px;
+    }
+    & .footer-menu-wrapper-left {
+      line-height: 2rem;
+      align-self: flex-start;
+      @include element-float(left, 0px);
+      text-align: left;
+      cursor: pointer;
+      & div:hover {
+        color: $limeGreen;
+      }
+    }
+    & .footer-menu-wrapper-right {
+      line-height: 2rem;
+      align-self: flex-start;
+      @include element-float(right, 30px);
+      text-align: left;
+      cursor: pointer;
+      & div:hover {
+        color: $limeGreen;
+      }
+    }
+  }
+}
+
+// Attribution
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
